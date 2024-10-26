@@ -1,6 +1,6 @@
 // src/components/ClothingUpload.js
 import React, { useState } from 'react';
-import { createUser } from '../api'; // Import your API function if needed
+import { createUser, uploadClothing } from '../api';
 
 function ClothingUpload() {
   // States for clothing item
@@ -18,11 +18,11 @@ function ClothingUpload() {
   const [isBodyTypeModalOpen, setIsBodyTypeModalOpen] = useState(false);
 
   const handleFileChange = (e) => {
-    const file = e.target.files[0]; // Get the first file
-    if (file && file.type.startsWith('image/')) { // Check if it's an image
-      setImage(URL.createObjectURL(file)); // Create object URL for the image
+    const file = e.target.files[0];
+    if (file && file.type.startsWith('image/')) {
+      setImage(file); // Set the image file
     } else {
-      console.error("Please select a valid image file."); // Log an error if the file is not an image
+      console.error("Please select a valid image file.");
     }
   };
 
@@ -38,22 +38,25 @@ function ClothingUpload() {
     };
 
     try {
+      // Create user
       const newUser = await createUser(userData);
       console.log('User created:', newUser);
 
-      // Handle clothing item submission
-      const clothingData = {
-        image,
-        type,
-        color,
-        style,
-      };
-      console.log('Clothing Item:', clothingData);
+      // Prepare clothing data
+      const formData = new FormData();
+      formData.append('image', image);
+      formData.append('type', type);
+      formData.append('color', color);
+      formData.append('style', style);
+
+      // Upload clothing item
+      const clothingResponse = await uploadClothing(formData);
+      console.log('Clothing uploaded:', clothingResponse.data);
 
       // Reset form fields after submission
       resetForm();
     } catch (error) {
-      console.error("Error creating user:", error);
+      console.error("Error creating user or uploading clothing:", error);
     }
   };
 
@@ -88,7 +91,7 @@ function ClothingUpload() {
 
   return (
     <div>
-      <h2>Upload Clothing Item</h2>
+      <h2>Upload Clothing Item and Create User</h2>
       <form onSubmit={handleSubmit}>
         {/* User Profile Fields */}
         <input
@@ -123,29 +126,33 @@ function ClothingUpload() {
         />
 
         {/* Clothing Upload Fields */}
-        <input type="file" accept="image/*" onChange={handleFileChange} />
+        <input type="file" accept="image/*" onChange={handleFileChange} required />
         <input
           type="text"
           placeholder="Type (e.g., Shirt, Pants)"
           value={type}
           onChange={(e) => setType(e.target.value)}
+          required
         />
         <input
           type="text"
           placeholder="Color"
           value={color}
           onChange={(e) => setColor(e.target.value)}
+          required
         />
         <input
           type="text"
           placeholder="Style"
           value={style}
           onChange={(e) => setStyle(e.target.value)}
+          required
         />
 
         <button type="submit">Add Item and Create User</button>
       </form>
-      {image && <img src={image} alt="Clothing Item" style={{ width: '200px' }} />}
+
+      {image && <img src={URL.createObjectURL(image)} alt="Clothing Item" style={{ width: '200px' }} />}
 
       {/* Modal for skin tone selection */}
       {isSkinToneModalOpen && (
@@ -205,4 +212,3 @@ function ClothingUpload() {
 }
 
 export default ClothingUpload;
-

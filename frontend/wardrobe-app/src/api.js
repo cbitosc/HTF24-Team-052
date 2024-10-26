@@ -1,17 +1,18 @@
 // src/api.js
-import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api'; // Update this if your backend is hosted elsewhere
+import axios from 'axios';
 
 // Function to create a user
 export const createUser = async (userData) => {
-    try {
-        const response = await axios.post(`${API_URL}/users`, userData);
-        return response.data;
-    } catch (error) {
-        console.error("Error creating user:", error);
-        throw error;
-    }
+  const response = await axios.post('/api/users', userData);
+  return response;
 };
 
-// Add more functions for other API endpoints as needed
+// Function to upload clothing (Add this function if missing)
+export const uploadClothing = async (formData) => {
+  const response = await axios.post('/api/clothing/upload', formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  });
+  return response;
+};
+
