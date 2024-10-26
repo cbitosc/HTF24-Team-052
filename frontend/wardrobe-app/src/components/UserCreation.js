@@ -1,17 +1,19 @@
-// src/components/UserCreation.js
 import React, { useState } from 'react';
-import { createUser } from '../api'; // Your API call function
+import { createUser } from '../api';
 
 function UserCreation() {
   const [username, setUsername] = useState('');
+  const [gender, setGender] = useState('');
+  const [skinColor, setSkinColor] = useState('');
+  const [bodyType, setBodyType] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const userData = { username, gender, skinColor, bodyType };
+
     try {
-      const newUser = await createUser({ username });
-      console.log('User created:', newUser);
-      // Redirect to profile page after user creation
-      window.location.href = '/profile';
+      const response = await createUser(userData);
+      console.log('User created:', response.data);
     } catch (error) {
       console.error("Error creating user:", error);
     }
@@ -19,13 +21,10 @@ function UserCreation() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        placeholder="Username"
-        required
-      />
+      <input value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" required />
+      <input value={gender} onChange={(e) => setGender(e.target.value)} placeholder="Gender" required />
+      <input value={skinColor} onChange={(e) => setSkinColor(e.target.value)} placeholder="Skin Color" required />
+      <input value={bodyType} onChange={(e) => setBodyType(e.target.value)} placeholder="Body Type" required />
       <button type="submit">Create User</button>
     </form>
   );
