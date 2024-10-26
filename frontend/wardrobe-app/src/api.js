@@ -15,4 +15,3 @@ export const uploadClothing = async (formData) => {
   });
   return response;
 };
-
