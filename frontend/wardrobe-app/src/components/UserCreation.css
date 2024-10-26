@@ -1,0 +1,72 @@
+/* Global Styles */
+body {
+    font-family: 'Poppins', sans-serif; /* Modern font */
+    background-color: #f0f4f8; /* Light background for a fresh look */
+    color: #333; /* Dark text for readability */
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* User Creation Container */
+  h2 {
+    text-align: center;
+    color: #ff6b6b; /* Trendy accent color */
+  }
+  
+  form {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Input Styles */
+  input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 15px;
+    margin: 15px 0;
+    border: 2px solid #ff6b6b; /* Accent border */
+    border-radius: 10px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+  }
+  
+  input[type="text"]:focus {
+    border-color: #ff3b3b; /* Darker shade on focus */
+    outline: none;
+  }
+  
+  /* Button Styles */
+  button {
+    width: 100%;
+    padding: 12px;
+    background-color: #ff6b6b; /* Accent button color */
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #ff3b3b; /* Darker shade on hover */
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 480px) {
+    form {
+      padding: 20px;
+    }
+  
+    h2 {
+      font-size: 24px;
+    }
+  
+    button {
+      font-size: 16px;
+    }
+  }
+  
