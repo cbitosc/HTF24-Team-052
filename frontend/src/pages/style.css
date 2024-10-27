@@ -1,0 +1,86 @@
+/* Importing a Google Font for a more impactful appearance */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+/* Base styles for the entire application */
+body {
+    background: linear-gradient(to bottom right, #f4ffeb, #e1f8c2); /* Gradient from Honeydew to Pale Spring Bud */
+    font-family: 'Montserrat', sans-serif; /* Modern font family */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full height to center content vertically */
+}
+
+h1 {
+    color: #9bd076; /* Pistachio color for headings */
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 600; /* Bold heading */
+}
+
+/* Container for forms */
+.form-container {
+    background-color: #f9f9f9; /* Off-white background for form containers */
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 400px; /* Fixed width for consistency */
+    max-width: 90%; /* Responsive */
+}
+
+/* Input and button styles */
+input[type="text"],
+input[type="file"],
+select {
+    width: calc(100% - 20px); /* Full width minus padding */
+    padding: 10px;
+    margin-bottom: 15px; /* Gap between form elements */
+    border: 2px solid #90cfd5; /* Middle Blue Green border color */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Increased font size for readability */
+    font-family: 'Montserrat', sans-serif; /* Consistent font family */
+    background-color: #ffffff; /* White background for input boxes */
+}
+
+input[type="submit"],
+button {
+    background-color: #9bd076; /* Pistachio button color */
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px; /* Larger button font */
+    font-weight: 600; /* Bold button text */
+    transition: background-color 0.3s ease; /* Smooth transition */
+    margin-bottom: 15px; /* Space between buttons */
+    width: 100%; /* Full width for buttons */
+}
+
+input[type="submit"]:hover,
+button:hover {
+    background-color: #90cfd5; /* Change color on hover to Middle Blue Green */
+}
+
+/* Error and success message styles */
+.error {
+    color: #9bd076; /* Pistachio color for error messages */
+    text-align: center;
+    font-weight: 600; /* Bold error messages */
+}
+
+.success {
+    color: #9bd076; /* Pistachio color for success messages */
+    text-align: center;
+    font-weight: 600; /* Bold success messages */
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    .form-container {
+        width: 90%; /* Full width on smaller screens */
+        padding: 20px; /* Less padding */
+    }
+}
